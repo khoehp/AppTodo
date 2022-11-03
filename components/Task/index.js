@@ -1,35 +1,18 @@
-import { View, Text, TouchableOpacity,
-    ScrollView, } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import styles from "./style";
-const Task = () => {
+const Task = (props) => {
+  const { number } = props;
+  const textNumber = number < 10 ? `0${number}` : number;
   return (
-    <ScrollView>
-      <TouchableOpacity>
-        <View style={styles.item}>
-          <View style={styles.square}>
-            <Text style={styles.number}>01</Text>
-          </View>
-          <Text style={styles.content}>Di cho</Text>
+    <TouchableOpacity onPress={props.deleteTask}>
+      <View style={styles.item}>
+        <View style={styles.square}>
+          <Text style={styles.number}>{textNumber}</Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View style={styles.item}>
-          <View style={styles.square}>
-            <Text style={styles.number}>02</Text>
-          </View>
-          <Text style={styles.content}>Lau nha</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View style={styles.item}>
-          <View style={styles.square}>
-            <Text style={styles.number}>03</Text>
-          </View>
-          <Text style={styles.content}>Quet rac</Text>
-        </View>
-      </TouchableOpacity>
-    </ScrollView>
+        <Text style={styles.content}>{props.title}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
