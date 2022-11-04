@@ -3,11 +3,13 @@ import Task from "./components/Task";
 import Form from "./components/Form";
 import styles from "./Style";
 import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   const [taskList, setTaskList] = useState([]);
   const handleAddTask = (task) => {
     setTaskList([...taskList, task]);
+
   };
   const handleDeleteTask = (index) => {
     Alert.alert("Thong bao", "Ban chac chan muon xoa?", [

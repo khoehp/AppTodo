@@ -5,9 +5,11 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Keyboard,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import style from "./style";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Form = (props) => {
   const [task, setTask] = useState("");
@@ -16,9 +18,14 @@ const Form = (props) => {
       alert("Vui lòng nhập công việc!");
       return false;
     }
-    props.onAddTask(task);
-    setTask("");
+    try {
+      AsyncStorage.setItem("task", JSON.stringify(task));
+      props.onAddTask(task);
+      setTask("");
     Keyboard.dismiss();
+    } catch (err) {
+      Alert.alert("err");
+    }
   };
   return (
     <KeyboardAvoidingView
